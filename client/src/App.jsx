@@ -5,7 +5,7 @@ import {MdClose} from "react-icons/md"
 import axios from "axios"
 import FormTable from './components/Formtable';
 
-axios.defaults.baseURL = "http://localhost:8060/"
+axios.defaults.baseURL = "https://crud-server-sand-ten.vercel.app/"
 //8080 server port no. running on, 
 
 function App() {
