@@ -1,0 +1,370 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000000be;
+}
+
+.container {
+  padding: 10px;
+  max-width: fit-content;
+  margin: 50px auto;
+  border-radius: 10px;
+}
+
+.btn {
+  border: none;
+  padding: 7px 15px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-add {
+  /* background-color: rgb(235, 184, 0); */
+  border: none;
+  padding: 8px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+
+
+  color: #f5f6ff;
+}
+
+/* Modal Container */
+
+.background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 998; /* Just below the modal */
+  /* display: none; */
+}
+.addcontainer {
+  position: fixed;
+  
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-width: 500px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1000;
+  animation: modalFadeIn 0.5s ease-out;
+}
+
+/* Close Button */
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #c82333;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+input {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit Button */
+.btn {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Modal Keyframes */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Responsive Design for max-width 768px */
+@media (max-width: 768px) {
+  .addcontainer {
+    width: 95%;
+    padding: 15px;
+  }
+
+  label, input, .btn {
+    font-size: 14px;
+  }
+
+  .close-btn {
+    font-size: 20px;
+  }
+}
+
+/* Container */
+.tablecontainer {
+  max-width: 700px;
+  overflow-x: auto;
+  margin: 20px 0;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #fff;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  animation: tableFadeIn 1s ease-in-out;
+}
+
+/* Table Header */
+th {
+  background-color: #343a40;
+  color: #fff;
+  font-weight: 700;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #495057;
+  
+}
+
+/* Table Rows */
+tr {
+  /* transition: background-color 0.3s ease, transform 0.3s ease; */
+  /* background-color: #007bff; */
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: #e9ecef;
+  transform: scale(1.02);
+}
+
+/* Table Cells */
+td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+  animation: cellFadeIn 1s ease-out;
+}
+
+/* Buttons */
+button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.btn-edit {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 16px;
+}
+
+button.btn-edit:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+button.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+button.btn-delete:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+/* No Data Message */
+.no-data {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+  font-size: 18px;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tableFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cellFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive Design for max-width 768px */
+@media (max-width: 768px) {
+  th, td {
+    padding: 8px;
+  }
+
+  button {
+    padding: 6px 12px;
+  }
+}
+
+/* Responsive Design for max-width 600px */
+@media (max-width: 600px) {
+  .container {
+    padding: 5px;
+    margin: 20px auto;
+    max-width: 100%;
+  }
+
+  .addcontainer {
+    width: 100%;
+    padding: 10px;
+    
+  }
+
+  label, input, .btn {
+    font-size: 12px;
+  }
+
+  .close-btn {
+    font-size: 18px;
+  }
+
+  .tablecontainer {
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  th, td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .no-data {
+    font-size: 16px;
+  }
+}
+
+/* Additional responsive design for max-width 380px */
+@media (max-width: 430px) {
+  .container {
+    padding: 5px;
+    margin: 10px auto;
+    max-width: 100%;
+  }
+
+  .addcontainer {
+    width: 100%;
+    padding: 5px;
+  }
+
+  label, input, .btn {
+    font-size: 10px;
+  }
+
+  .close-btn {
+    font-size: 16px;
+  }
+
+  .tablecontainer {
+    padding: 5px;
+    margin: 5px 0;
+  }
+
+  th, td {
+    padding: 4px;
+    font-size: 10px;
+  }
+
+  button {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+
+  .no-data {
+    font-size: 14px;
+  }
+}
