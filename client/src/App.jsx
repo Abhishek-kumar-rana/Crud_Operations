@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import './App.css'
-import { MdClose } from "react-icons/md"
-import axios from "axios"
+import { useEffect, useState, useRef } from 'react';
+import './App.css';
+import { MdClose } from "react-icons/md";
+import axios from "axios";
 import FormTable from './components/Formtable';
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import LoadingBar from 'react-top-loading-bar';
 
 axios.defaults.baseURL = "https://crud-server-sand-ten.vercel.app/";
 
@@ -23,6 +24,7 @@ function App() {
     _id: ""
   });
   const [datalist, setdatalist] = useState([]);
+  const ref = useRef(null); // Reference for the loading bar
   const [loading, setLoading] = useState(false); // Loading state
 
   const handleOnchange = (e) => {
@@ -35,20 +37,24 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    ref.current.continuousStart(); // Start the loading bar
     const data = await axios.post("/create", formdata);
     if (data.data.success) {
       setaddsection(false);
     }
     getfetchdata();
+    ref.current.complete(); // Complete the loading bar
   }
 
   const getfetchdata = async () => {
     setLoading(true); // Start loading
+    ref.current.continuousStart(); // Start the loading bar
     const data = await axios.get("/");
     if (data.data.success) {
       setdatalist(data.data.data);
     }
-    setLoading(false); // End loading
+    ref.current.complete(); // Complete the loading bar
+    setLoading(false); // Start loading
   }
 
   useEffect(() => {
@@ -56,17 +62,21 @@ function App() {
   }, []);
 
   const handledelete = async (id) => {
+    ref.current.continuousStart(); // Start the loading bar
     const data = await axios.delete("/delete/" + id);
     getfetchdata();
+    ref.current.complete(); // Complete the loading bar
   }
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    ref.current.continuousStart(); // Start the loading bar
     const data = await axios.put("/update", formdataedit);
     if (data.data.success) {
       getfetchdata();
       seteditsection(false);
     }
+    ref.current.complete(); // Complete the loading bar
   }
 
   const handleEditOnchange = async (e) => {
@@ -84,6 +94,7 @@ function App() {
 
   return (
     <div className='container'>
+      <LoadingBar color="#f11946" ref={ref} /> {/* Loading bar component */}
       <button className='btn-add' onClick={() => setaddsection(true)}>Add</button>
 
       <div>
@@ -104,7 +115,7 @@ function App() {
           />
         )}
 
-        <div className="tablecontainer">
+<div className="tablecontainer">
           {loading ? (
             <p>Loading...</p> // Display loading message
           ) : (
@@ -124,7 +135,7 @@ function App() {
                       key={el._id}
                       className='trborder'
                       drag
-                      dragConstraints={{ top: -25, right: 25, left: -25, bottom: 25 }}
+                      dragConstraints={{ top: -50, right: 50, left: -50, bottom: 50 }}
                       dragTransition={{ bounceStiffness: 600, bounceDamping: 10 }}
                     >
                       <td>{el.name}</td>
