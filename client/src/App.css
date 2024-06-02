@@ -185,6 +185,11 @@ tr {
   /* background-color: #007bff; */
 }
 
+.trborder{
+  background-color: ;
+  border-radius: 30px;
+}
+
 tr:nth-child(even) {
   background-color: #f8f9fa;
 }
